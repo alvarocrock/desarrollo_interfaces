@@ -1,5 +1,6 @@
 package eval_ini_inter;
 
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -10,7 +11,7 @@ public class controlador {
 	//accedere aun fichero para cargar los usuarios
 	
 	//estado
-	usuarios lista;
+	private usuarios lista;
 	
 	
 	final static String user= "usuario";
@@ -32,9 +33,11 @@ public class controlador {
 	
 	//resto comportamientos
 	
+	
+	
 	public boolean compro_passwd(String contrasena) {
 	
-		if (contrasena.equals(passwrd)) {
+		if (lista.buc_passwd(contrasena)==true) {
 			return true;
 		} else {
 			return false;
@@ -45,11 +48,11 @@ public class controlador {
 	
 	public boolean compro_user(String usuario) {
 		
-		if (usuario.equals(user)) {
-			return true;
-		} else {
-			return false;
-		}
+	  if (lista.buc_user(usuario)==true) {
+		  return true;
+	  }	else {
+		  return false;
+	  }
 		
 	}
 	
@@ -60,9 +63,11 @@ public class controlador {
 		usuario miuser=null;
 		try {
 			in = new Scanner(miFichero);
-			siguientelinea = in.nextLine();
+			
 			while (in.hasNext()) {
+				siguientelinea = in.nextLine();
 				miuser= new usuario(siguientelinea);
+				lista.add(miuser);
 				
 				
 			}

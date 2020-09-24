@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class usuarios {
 	
 	//estado
-	ArrayList <usuario> lista_user;
+	private ArrayList <usuario> lista_user;
 	
 	
 	//comportamiento
@@ -32,7 +32,8 @@ public class usuarios {
 			if (cont<lista_user.size()-1) {
 					if (lista_user.get(cont).getuser().equals(usuario)) {
 						encontrado=true;
-					} else {cont++;
+					} else {
+						cont++;
 					}
 				} else {
 				encontrado=false;
@@ -49,7 +50,8 @@ public class usuarios {
 			if (cont<lista_user.size()-1) {
 					if (lista_user.get(cont).getpasswd().equals(passwd)) {
 						encontrado=true;
-					} else {cont++;
+					} else {
+						cont++;
 					}
 				} else {
 				encontrado=false;

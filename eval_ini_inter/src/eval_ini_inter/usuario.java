@@ -4,8 +4,8 @@ public class usuario {
 	
 	//ESTAdo
 	
-	String usuario;
-	String passwd;
+	private String usuario;
+	private String passwd;
 	
 	
 	

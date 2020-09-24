@@ -7,19 +7,28 @@ import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import javax.swing.JTextArea;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.AbstractAction;
+import javax.swing.Action;
 
-public class interfaz {
+public class interfaz implements ActionListener{
 
 	private JFrame frame;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField jtfusuario;
+	private JTextField jtfpasswd;
+	private controlador micontrolador;
+	private JTextField jtfresul;
+	private final Action action = new SwingAction();
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -30,6 +39,7 @@ public class interfaz {
 				}
 			}
 		});
+		
 	}
 
 	/**
@@ -42,43 +52,74 @@ public class interfaz {
 	/**
 	 * Initialize the contents of the frame.
 	 */
+	
+	
+	
 	private void initialize() {
+		
+		micontrolador = new controlador();
+		micontrolador.cargar_users();
+		
+		
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JTextArea txtrUsuario = new JTextArea();
-		txtrUsuario.setText("usuario: ");
-		txtrUsuario.setBounds(23, 59, 79, 22);
-		frame.getContentPane().add(txtrUsuario);
+		JTextArea etiqueta_usuario = new JTextArea();
+		etiqueta_usuario.setText("usuario: ");
+		etiqueta_usuario.setBounds(23, 59, 79, 22);
+		frame.getContentPane().add(etiqueta_usuario);
 		
-		textField = new JTextField();
-		textField.setBounds(131, 62, 96, 19);
-		frame.getContentPane().add(textField);
-		textField.setColumns(10);
+		jtfusuario = new JTextField();
+		jtfusuario.setBounds(131, 62, 96, 19);
+		frame.getContentPane().add(jtfusuario);
+		jtfusuario.setColumns(10);
 		
-		JTextArea txtrContrasea = new JTextArea();
-		txtrContrasea.setText("Contrase\u00F1a: ");
-		txtrContrasea.setBounds(23, 108, 96, 22);
-		frame.getContentPane().add(txtrContrasea);
+		JTextArea etiqueta_contraseña = new JTextArea();
+		etiqueta_contraseña.setText("Contrase\u00F1a: ");
+		etiqueta_contraseña.setBounds(23, 108, 96, 22);
+		frame.getContentPane().add(etiqueta_contraseña);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(131, 111, 96, 19);
-		frame.getContentPane().add(textField_1);
-		textField_1.setColumns(10);
+		jtfpasswd = new JTextField();
+		jtfpasswd.setBounds(131, 111, 96, 19);
+		frame.getContentPane().add(jtfpasswd);
+		jtfpasswd.setColumns(10);
 		
-		JButton btnNewButton = new JButton("Login");
-		btnNewButton.setBounds(142, 165, 85, 21);
-		frame.getContentPane().add(btnNewButton);
-		
-		JTextArea textArea = new JTextArea();
-		textArea.setBounds(268, 59, 158, 22);
-		frame.getContentPane().add(textArea);
+		JButton button = new JButton("Login");
+		button.addActionListener(this);
+		button.setBounds(142, 165, 85, 21);
+		frame.getContentPane().add(button);
 		
 		JTextArea txtrComprobacin = new JTextArea();
 		txtrComprobacin.setText("comprobaci\u00F3n");
 		txtrComprobacin.setBounds(268, 31, 106, 22);
 		frame.getContentPane().add(txtrComprobacin);
+		
+		jtfresul = new JTextField();
+		jtfresul.setBounds(268, 62, 96, 19);
+		frame.getContentPane().add(jtfresul);
+		jtfresul.setColumns(10);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		// TODO Auto-generated method stub
+		if (micontrolador.compro_passwd(jtfpasswd.getText())==true && micontrolador.compro_user(jtfusuario.getText())==true) {
+			//modificamos textro resultados
+			jtfresul.setText("correcto");	
+		} else {
+			//modificamos texto resultado
+			jtfresul.setText("Incorrecto");
+		}
+		
+	}
+	private class SwingAction extends AbstractAction {
+		public SwingAction() {
+			putValue(NAME, "SwingAction");
+			putValue(SHORT_DESCRIPTION, "Some short description");
+		}
+		public void actionPerformed(ActionEvent e) {
+		}
 	}
 }
