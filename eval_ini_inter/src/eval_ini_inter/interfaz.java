@@ -71,5 +71,14 @@ public class interfaz {
 		JButton btnNewButton = new JButton("Login");
 		btnNewButton.setBounds(142, 165, 85, 21);
 		frame.getContentPane().add(btnNewButton);
+		
+		JTextArea textArea = new JTextArea();
+		textArea.setBounds(268, 59, 158, 22);
+		frame.getContentPane().add(textArea);
+		
+		JTextArea txtrComprobacin = new JTextArea();
+		txtrComprobacin.setText("comprobaci\u00F3n");
+		txtrComprobacin.setBounds(268, 31, 106, 22);
+		frame.getContentPane().add(txtrComprobacin);
 	}
 }
