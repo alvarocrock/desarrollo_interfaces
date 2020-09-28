@@ -1,4 +1,0 @@
-pepe;pepe
-usuario;usuario
-root;toor
-alvaaro;alvaro
